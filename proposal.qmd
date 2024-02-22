@@ -1,5 +1,5 @@
 ---
-title: "Project Proposal"
+title: "Refugee Project Proposal"
 format: html
 editor: visual
 ---
@@ -8,7 +8,41 @@ editor: visual
 
 Your proposal should include:
 
-* A brief description of your dataset including its provenance, dimensions, etc. (Make sure to load the data and use inline code for some of this information.)
-* The reason why you chose this dataset.
-* The two questions you want to answer.
-  + A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+-   A brief description of your dataset including its provenance, dimensions, etc. (Make sure to load the data and use inline code for some of this information.)
+-   The reason why you chose this dataset.
+-   The two questions you want to answer.
+    -   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+
+```{r}
+library(tidyverse)
+library(refugees)
+
+populations <- refugees::population
+
+write_csv(populations, "population.csv")
+```
+
+```{r}
+dim(populations)
+
+populations
+```
+
+| variable          | class     | description                                                     |
+|-------------------|-----------|-----------------------------------------------------------------|
+| year              | double    | The year.                                                       |
+| coo_name          | character | Country of origin name.                                         |
+| coo               | character | Country of origin UNHCR code.                                   |
+| coo_iso           | character | Country of origin ISO code.                                     |
+| coa_name          | character | Country of asylum name.                                         |
+| coa               | character | Country of asylum UNHCR code.                                   |
+| coa_iso           | character | Country of asylum ISO code.                                     |
+| refugees          | double    | The number of refugees.                                         |
+| asylum_seekers    | double    | The number of asylum-seekers.                                   |
+| returned_refugees | double    | The number of returned refugees.                                |
+| idps              | double    | The number of internally displaced persons.                     |
+| returned_idps     | double    | The number of returned internally displaced persons.            |
+| stateless         | double    | The number of stateless persons.                                |
+| ooc               | double    | The number of others of concern to UNHCR.                       |
+| oip               | double    | The number of other people in need of international protection. |
+| hst               | double    | The number of host community members.                           |
