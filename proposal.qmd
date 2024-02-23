@@ -19,7 +19,7 @@ library(refugees)
 
 populations <- refugees::population
 
-write_csv(populations, "population.csv")
+write_csv(populations, "data/population.csv")
 ```
 
 ```{r}
