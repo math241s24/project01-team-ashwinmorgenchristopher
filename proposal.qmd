@@ -13,7 +13,7 @@ Your proposal should include:
 -   The two questions you want to answer.
     -   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
 
-------------------------------------------------------------------------
+***
 
 ```{r}
 library(tidyverse)
@@ -55,7 +55,12 @@ There are 126,262 observations in the dataset, and there are 16 variables. 10 of
 
 Why we chose this dataset:
 
+<<<<<<< HEAD
 We chose this set because we are interested in the consequences of real world policy. The dataset also is quite clean and has a good distribution of numeric and categorical variables making it ideal for analysis.
+=======
+We chose this dataset because we are interested in the consequences of real world policy. The dataset is also quite clean, and has a good distribution of numeric and categorical variables making it ideal for analysis.
+We wanted to best connect what we learn in this class with real world applications, and this dataset seemed like the best fit.
+>>>>>>> 51028fee10025087861c8f5507bf42dbd60f2747
 
 Research Questions:
 
@@ -68,4 +73,4 @@ Research Questions:
 
     -   Variables to be created: total_population_affected, combining refugees, asylum seekers, returned refugees, IDPs, and stateless persons for a comprehensive view over time.
 
-------------------------------------------------------------------------
+***
