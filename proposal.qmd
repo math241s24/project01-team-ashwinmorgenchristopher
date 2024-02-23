@@ -46,3 +46,12 @@ populations
 | ooc               | double    | The number of others of concern to UNHCR.                       |
 | oip               | double    | The number of other people in need of international protection. |
 | hst               | double    | The number of host community members.                           |
+
+Why we chose this dataset:
+
+We chose this set because we are interested in the consequences of real world policy. The dataset also is quite clean and has a god distribution of numeric and categorical variables making it ideal for analysis.
+
+Research Questions:
+
+1.  How does geography affect refugee populations in 2022? Where are refugees coming from and where are they going to?
+2.  How have refugee populations changed in North America over time?
