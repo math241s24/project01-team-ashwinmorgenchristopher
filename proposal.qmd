@@ -71,6 +71,6 @@ Research Questions:
 2.  *How have refugee populations changed in North America over time?*
     -   Variables involved: year, coa_name (focusing on countries in North America), refugees, asylum_seekers, returned_refuges, idps, stateless
 
-    -   Variables to be created: total_population_affected, combining refugees, asylum seekers, returned refugees, IDPs, and stateless persons for a comprehensive view over time.
+    -   Variables to be created: total_population_affected, combining refugees, asylum seekers, returned refugees, IDPs, and stateless persons for a comprehensive view over time. 
 
 ***
