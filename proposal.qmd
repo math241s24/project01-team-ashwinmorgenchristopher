@@ -49,7 +49,8 @@ populations
 
 Why we chose this dataset:
 
-We chose this set because we are interested in the consequences of real world policy. The dataset also is quite clean and has a god distribution of numeric and categorical variables making it ideal for analysis.
+We chose this dataset because we are interested in the consequences of real world policy. The dataset is also quite clean, and has a good distribution of numeric and categorical variables making it ideal for analysis.
+We wanted to best connect what we learn in this class with real world applications, and this dataset seemed like the best fit.
 
 Research Questions:
 
