@@ -13,6 +13,8 @@ Your proposal should include:
 -   The two questions you want to answer.
     -   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
 
+------------------------------------------------------------------------
+
 ```{r}
 library(tidyverse)
 library(refugees)
@@ -29,7 +31,7 @@ populations
 ```
 
 | variable          | class     | description                                                     |
-|-------------------|-----------|-----------------------------------------------------------------|
+|--------------|--------------|--------------------------------------------|
 | year              | double    | The year.                                                       |
 | coo_name          | character | Country of origin name.                                         |
 | coo               | character | Country of origin UNHCR code.                                   |
@@ -47,11 +49,23 @@ populations
 | oip               | double    | The number of other people in need of international protection. |
 | hst               | double    | The number of host community members.                           |
 
+Dataset summary:
+
+There are 126,262 observations in the dataset, and there are 16 variables. 10 of the variables are numerical and 6 are categorical.
+
 Why we chose this dataset:
 
-We chose this set because we are interested in the consequences of real world policy. The dataset also is quite clean and has a god distribution of numeric and categorical variables making it ideal for analysis.
+We chose this set because we are interested in the consequences of real world policy. The dataset also is quite clean and has a good distribution of numeric and categorical variables making it ideal for analysis.
 
 Research Questions:
 
-1.  How does geography affect refugee populations in 2022? Where are refugees coming from and where are they going to?
-2.  How have refugee populations changed in North America over time?
+1.  *How does geography affect refugee populations in 2022? Where are refugees coming from and where are they going to?*
+    -   Variables involved: coo_name (Country of Origin Name), coa_name (Country of Asylum Name), refugees, asylum_seekers, idps, stateless (numeric variables indicating the number of people in each category)
+
+    -   Variables to be created: a combined variable, total_refugees_and_asylum_seekers, to represent the total number of refugees and asylum seekers from each country of origin to each country of asylum.
+2.  *How have refugee populations changed in North America over time?*
+    -   Variables involved: year, coa_name (focusing on countries in North America), refugees, asylum_seekers, returned_refuges, idps, stateless
+
+    -   Variables to be created: total_population_affected, combining refugees, asylum seekers, returned refugees, IDPs, and stateless persons for a comprehensive view over time.
+
+------------------------------------------------------------------------
