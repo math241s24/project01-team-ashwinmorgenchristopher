@@ -13,12 +13,21 @@ Your write-up should consist of three parts:
 Brief introduction to the dataset. You may repeat some of the information about the dataset provided in the introduction to the dataset on the `TidyTuesday` repository, for instance. Imagine that your project is a standalone document and the grader has no prior knowledge of the dataset.
 
 ### Question 1:
+<<<<<<< HEAD
 
 The title should relate to the question you're answering.
 
 #### Introduction (1-2 paragraphs):
 
 Introduction to the question and what parts of the dataset are necessary to answer the question. Also discuss why you're interested in this question.
+=======
+
+The title should relate to the question you’re answering.
+
+#### Introduction (1-2 paragraphs):
+
+Introduction to the question and what parts of the dataset are necessary to answer the question. Also discuss why you’re interested in this question.
+>>>>>>> c67a322eb07a27115465deae8270abb0b095c0a9
 
 #### Approach (1-2 paragraphs):
 
@@ -26,6 +35,25 @@ Describe what types of plots you are going to make to address your question. For
 
 #### Analysis (2-3 code blocks, 2 figures, text/code comments as needed):
 
+<<<<<<< HEAD
+=======
+```{r}
+#How does geography affect refugee populations in 2022? Where are refugees coming from and where are they going to?
+
+#Variables involved: coo_name (Country of Origin Name), coa_name (Country of Asylum Name), refugees, asylum_seekers, idps, stateless (numeric variables indicating the number of people in each category)
+
+#Variables to be created: a combined variable, total_refugees_and_asylum_seekers, to represent the total number of refugees and asylum seekers from each country of origin to each country of asylum.
+
+populations %>% 
+  mutate (total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
+
+populationsNA %>% 
+  select()
+
+
+```
+
+>>>>>>> c67a322eb07a27115465deae8270abb0b095c0a9
 In this section, provide the code that generates your plots. Use scale functions to provide nice axis labels and guides. You are welcome to use theme functions to customize the appearance of your plot, but you are not required to do so. All plots must be made with ggplot2. Do not use base R or lattice plotting functions.
 
 #### Discussion (1-3 paragraphs):
@@ -34,7 +62,11 @@ In the Discussion section, interpret the results of your analysis. Identify any 
 
 ### Question 2:
 
+<<<<<<< HEAD
 Same structure outlined for Question 1, but for your new question. And the title should relate to the question you're answering.
+=======
+Same structure outlined for Question 1, but for your new question. And the title should relate to the question you’re answering.
+>>>>>>> c67a322eb07a27115465deae8270abb0b095c0a9
 
 We encourage you to be concise. A paragraph should typically not be longer than 5 sentences.
 
