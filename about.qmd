@@ -4,4 +4,4 @@ format: html
 editor: visual
 ---
 
-This project is developed by **Ashwin Dev, Morgen Kaufman, and Christopher Newell** for the first mini-project of Math/Stat 241 at Reed College.
+This project is developed by **Ashwin Dev, Morgen Kaufman,** and **Christopher Newell** for the first mini-project of Math/Stat 241 at Reed College.
