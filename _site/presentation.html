@@ -331,6 +331,11 @@
 </div>
 
 </section>
+<section>
+<section id="start" class="title-slide slide level1 center">
+<h1>Start</h1>
+
+</section>
 <section id="outline" class="slide level2">
 <h2>Outline</h2>
 <ul>
@@ -351,26 +356,45 @@
 <li>Your evaluation will be based on your content, professionalism (including sticking to time), and your performance during the Q&amp;A (question and answer). We don’t care how many slides you use to do this.</li>
 </ul>
 </section>
-<section id="introduction" class="slide level2">
+<section id="introduction" class="slide level2 smaller">
 <h2>Introduction</h2>
+<ul>
+<li>ddnefn
+<ul>
+<li>dnkef</li>
+</ul></li>
+<li>nff
+<ul>
+<li>dekfm</li>
+</ul></li>
+</ul>
 <p>This data comes from the PopulationStatistics {refugees} R package.{refugees} is an R package that is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder. It provides an easy-to-use interface to the database, which covers forcibly displaced populations. This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. Data from this packages comes from three major sources: Data from UNHCR’s annual statistical activities dating back to 1951, Data from the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), Data from the Internal Displacement Monitoring Centre (IDMC) on people displaced within their country due to conflict or violence. The {refugees} package includes eight datasets. We’ll specifically be working with population data from 2010 to 2022. This dataset has 126262 observations and 16 variables. The following are each of the 16 variables available in this dataset.</p>
 </section>
 <section id="q1" class="slide level2">
 <h2>Q1</h2>
+<p>question + approach</p>
 </section>
 <section id="q1-1" class="slide level2">
 <h2>Q1</h2>
-</section>
+<p>graphs + discussion</p>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="q1-2" class="slide level2">
+<h2>Q1</h2>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
 <section id="q2" class="slide level2">
 <h2>Q2</h2>
+<p>question + approach</p>
 </section>
 <section id="q2-1" class="slide level2">
 <h2>Q2</h2>
+<p>graphs + discussion</p>
 
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -582,6 +606,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

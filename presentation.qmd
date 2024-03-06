@@ -11,6 +11,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+# Start 
+
 ## Outline
 
 * Your presentation should generally follow the same structure as your write-up. 
@@ -29,8 +31,14 @@ editor_options:
   
 * Your evaluation will be based on your content, professionalism (including sticking to time), and your performance during the Q&A (question and answer). We don’t care how many slides you use to do this.
 
-## Introduction 
+## Introduction {.smaller}
 
++ ddnefn
+  - dnkef
+  
++ nff
+  - dekfm
+  
 This data comes from the PopulationStatistics {refugees} R package.{refugees} is an R package that is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder. It provides an easy-to-use interface to the database, which covers forcibly displaced populations. This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. Data from this packages comes from three major sources: Data from UNHCR’s annual statistical activities dating back to 1951, Data from the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), Data from the Internal Displacement Monitoring Centre (IDMC) on people displaced within their country due to conflict or violence. The {refugees} package includes eight datasets. We'll specifically be working with population data from 2010 to 2022. This dataset has 126262 observations and 16 variables. The following are each of the 16 variables available in this dataset.
 
 ## Q1
@@ -38,6 +46,7 @@ question + approach
 
 ## Q1
 graphs + discussion 
+<<<<<<< Updated upstream
 ```{r, echo=FALSE}
 library(tidyverse)
 library(dplyr)
@@ -84,7 +93,50 @@ wiki_country_pop_tbl[wiki_country_pop_tbl == 'Moldova[q]'] <- 'Moldova'
 wiki_country_pop_tbl$Population = parse_number(wiki_country_pop_tbl$Population, )
 
 final_df <- merge(population, wiki_country_pop_tbl, by = "Location")
+```
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+library(tidyverse)
+populations <- read_csv("data/population.csv")
+
+populations22 <- populations %>%
+  filter(year == 2022) 
+
+populations22_coo <- populations22 %>%
+  group_by(coo) %>%
+  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
+
+populations22_coa <- populations22 %>%
+  group_by(coa) %>%
+  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
+
+
+populations22_coo %>% 
+  arrange(-total_refugees_and_asylum_seekers) %>%
+  head(n=10) %>%
+  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coo, fill=coo)) +
+  geom_col()
+```
+
+## Q1
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+
+populations22_coa %>% 
+  arrange(-total_refugees_and_asylum_seekers) %>%
+  head(n=10) %>%
+  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa, fill=coa)) +
+  geom_col()
 ```
 
 ## Q2

@@ -53,34 +53,41 @@
     "href": "presentation.html#introduction",
     "title": "Project Presentation",
     "section": "Introduction",
-    "text": "Introduction\nThis data comes from the PopulationStatistics {refugees} R package.{refugees} is an R package that is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder. It provides an easy-to-use interface to the database, which covers forcibly displaced populations. This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. Data from this packages comes from three major sources: Data from UNHCR’s annual statistical activities dating back to 1951, Data from the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), Data from the Internal Displacement Monitoring Centre (IDMC) on people displaced within their country due to conflict or violence. The {refugees} package includes eight datasets. We’ll specifically be working with population data from 2010 to 2022. This dataset has 126262 observations and 16 variables. The following are each of the 16 variables available in this dataset."
+    "text": "Introduction\n\nddnefn\n\ndnkef\n\nnff\n\ndekfm\n\n\nThis data comes from the PopulationStatistics {refugees} R package.{refugees} is an R package that is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder. It provides an easy-to-use interface to the database, which covers forcibly displaced populations. This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. Data from this packages comes from three major sources: Data from UNHCR’s annual statistical activities dating back to 1951, Data from the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), Data from the Internal Displacement Monitoring Centre (IDMC) on people displaced within their country due to conflict or violence. The {refugees} package includes eight datasets. We’ll specifically be working with population data from 2010 to 2022. This dataset has 126262 observations and 16 variables. The following are each of the 16 variables available in this dataset."
   },
   {
     "objectID": "presentation.html#q1",
     "href": "presentation.html#q1",
     "title": "Project Presentation",
     "section": "Q1",
-    "text": "Q1"
+    "text": "Q1\nquestion + approach"
   },
   {
     "objectID": "presentation.html#q1-1",
     "href": "presentation.html#q1-1",
     "title": "Project Presentation",
     "section": "Q1",
-    "text": "Q1"
+    "text": "Q1\ngraphs + discussion"
   },
   {
     "objectID": "presentation.html#q2",
     "href": "presentation.html#q2",
     "title": "Project Presentation",
     "section": "Q2",
-    "text": "Q2"
+    "text": "Q2\nquestion + approach"
   },
   {
     "objectID": "presentation.html#q2-1",
     "href": "presentation.html#q2-1",
     "title": "Project Presentation",
     "section": "Q2",
-    "text": "Q2"
+    "text": "Q2\ngraphs + discussion"
+  },
+  {
+    "objectID": "presentation.html#q1-2",
+    "href": "presentation.html#q1-2",
+    "title": "Project Presentation",
+    "section": "Q1",
+    "text": "Q1"
   }
 ]
