@@ -148,23 +148,6 @@ populations22_coo %>%
   ggplot(aes(y=total_refugees_and_asylum_seekers, x = coo, fill=coo)) +
   geom_col()
 
-populations22_coa %>% 
-  arrange(-total_refugees_and_asylum_seekers) %>%
-  head(n=10) %>%
-  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa, fill=coa)) +
-  geom_col()
-
-populations22_wiki_coa %>% 
-  arrange(-pop_div_refugee) %>%
-  head(n=10) %>%
-  ggplot(aes(y=pop_div_refugee, x = coa, fill=coa)) +
-  geom_col()
-
-populations22_wiki_coo %>% 
-  arrange(-pop_div_refugee) %>%
-  head(n=10) %>%
-  ggplot(aes(y=pop_div_refugee, x = coo, fill=coo)) +
-  geom_col()
 ```
 
 ## Q1
@@ -182,6 +165,40 @@ populations22_coa %>%
   ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa, fill=coa)) +
   geom_col()
 ```
+
+## Q1
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+populations22_wiki_coa %>% 
+  arrange(-pop_div_refugee) %>%
+  head(n=10) %>%
+  ggplot(aes(y=pop_div_refugee, x = coa, fill=coa)) +
+  geom_col()
+```
+
+## Q1
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+populations22_wiki_coo %>% 
+  arrange(-pop_div_refugee) %>%
+  head(n=10) %>%
+  ggplot(aes(y=pop_div_refugee, x = coo, fill=coo)) +
+  geom_col()
+```
+
+
+
+
 
 ## Q2
 question + approach 
