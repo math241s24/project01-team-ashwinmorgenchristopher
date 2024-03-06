@@ -132,7 +132,7 @@ populations22_coa %>%
 
 ## Q1 Graphics - ALT
 
-```{r, echo=FALSE, eval=F}
+```{r, echo=FALSE}
 url <- "https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"
 population <- read_csv("data/population.csv")
 #population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
@@ -181,7 +181,6 @@ populations_wiki_coa <- merge(population, wiki_country_pop_tbl, by = "Location")
 ::: panel-tabset
 
 ### Q1a
-
 ```{r, eval=F}
 #| echo: false
 #| warning: false
@@ -230,7 +229,6 @@ populations22_coo %>%
 ```
 
 ### Q1b
-
 ```{r, eval=F}
 #| echo: false
 #| warning: false
@@ -255,7 +253,6 @@ populations22_coa %>%
   geom_col()
 
 ### Q1c
-
 ```{r, eval=F}
 #| echo: false
 #| warning: false
@@ -317,6 +314,7 @@ tur_all %>%
        y = "Number of Total Refugees") +
     theme_minimal()
 ```
+
 
 ### Graph 2
 ```{r, eval=F}
