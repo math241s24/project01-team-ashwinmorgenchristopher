@@ -40,6 +40,47 @@ question + approach
 graphs + discussion 
 ```{r, echo=FALSE}
 
+library(readr)
+population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
+colnames(population)[colnames(population) == 'coo_name'] <- 'Location'
+
+url <- "https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"
+
+## Scrape html and store table
+
+#Grab all the tables and then navigate to the one you wanted.
+tables <- url %>%
+  read_html() %>%
+  html_nodes(css = "table")
+
+#Grab the specific table
+wiki_country_pop_tbl <- html_table(tables[[1]], fill = TRUE) %>%
+  filter(row_number() > 1)
+colnames(wiki_country_pop_tbl)[4] <- "Population"
+wiki_country_pop_tbl <- select(wiki_country_pop_tbl, 'Location', 'Population')
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'China[a]'] <- 'China'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Tanzania[b]'] <- 'Tanzania'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'France[c]'] <- 'France'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Spain[d]'] <- 'Spain'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Ukraine[e]'] <- 'Ukraine'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Australia[f]'] <- 'Australia'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Ukraine[e]'] <- 'Ukraine'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Somalia[h]'] <- 'Somalia'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Taiwan[g]'] <- 'Taiwan'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Netherlands[i]'] <- 'Netherlands'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Portugal[j]'] <- 'Portugal'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Hong Kong (China)[k]'] <- 'Hong Kong'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Serbia[l]'] <- 'Serbia'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Finland[m]'] <- 'Finland'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Norway[n]'] <- 'Norway'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Palestine[o]'] <- 'Palestine'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Georgia[p]'] <- 'Georgia'
+wiki_country_pop_tbl[wiki_country_pop_tbl == 'Moldova[q]'] <- 'Moldova'
+
+wiki_country_pop_tbl$Population = parse_number(wiki_country_pop_tbl$Population, )
+
+final_df <- merge(population, wiki_country_pop_tbl, by = "Location")
+
 ```
 
 ## Q2
