@@ -43,20 +43,20 @@ library(readr)
 
 ## Introduction {.smaller}
 
-+ ddnefn
-  - dnkef
-  
-+ nff
-  - dekfm
-  
-This data comes from the PopulationStatistics {refugees} R package.{refugees} is an R package that is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder. It provides an easy-to-use interface to the database, which covers forcibly displaced populations. This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. Data from this packages comes from three major sources: Data from UNHCR’s annual statistical activities dating back to 1951, Data from the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), Data from the Internal Displacement Monitoring Centre (IDMC) on people displaced within their country due to conflict or violence. The {refugees} package includes eight datasets. We'll specifically be working with population data from 2010 to 2022. This dataset has 126262 observations and 16 variables. The following are each of the 16 variables available in this dataset.
+* This data comes from the PopulationStatistics {refugees} R package.
+
+* The package is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder.
+
+* It provides an easy-to-use interface to the database, which covers forcibly displaced populations.This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. 
+  + The {refugees} package includes eight datasets. 
+  + We will specifically be working with population data from 2010 to 2022. 
+  + This dataset has 126262 observations and 16 variables. 
 
 ## Q1
 question + approach 
 
-## Q1
-graphs + discussion 
-<<<<<<< Updated upstream
+## Q1 Graphics 
+
 ```{r, echo=FALSE}
 url <- "https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"
 population <- read_csv("data/population.csv")
@@ -103,6 +103,10 @@ colnames(population)[colnames(population) == 'coa_name'] <- 'Location'
 populations_wiki_coa <- merge(population, wiki_country_pop_tbl, by = "Location")
 ```
 
+::: panel-tabset
+
+### Q1a
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -110,9 +114,9 @@ populations_wiki_coa <- merge(population, wiki_country_pop_tbl, by = "Location")
 #| fig.asp: .5
 
 
-populations <- read_csv("data/population.csv")
+population <- read_csv("data/population.csv")
 
-populations22 <- populations %>%
+populations22 <- population %>%
   filter(year == 2022) 
 
 populations22_coo <- populations22 %>%
@@ -149,7 +153,7 @@ populations22_coo %>%
 
 ```
 
-## Q1b
+### Q1b
 
 ```{r}
 #| echo: false
@@ -165,13 +169,15 @@ populations22_coa %>%
   geom_col()
 ```
 
-## Q1c
+### Q1c
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
 #| fig.asp: .5
+
+tibble()
 
 populations22_wiki_coa %>% 
   arrange(-pop_div_refugee) %>%
@@ -180,7 +186,7 @@ populations22_wiki_coa %>%
   geom_col()
 ```
 
-## Q1d
+### Q1d
 
 ```{r}
 #| echo: false
@@ -195,6 +201,7 @@ populations22_wiki_coo %>%
   geom_col()
 ```
 
+:::
 
 
 
@@ -205,5 +212,24 @@ question + approach
 ## Q2
 graphs + discussion 
 ```{r, echo=FALSE}
+library(tidyverse)
+library(dplyr)
+library(rvest)
+library(httr)
+library(readr)
+library(readr)
 
+population <- read_csv("data/population.csv")
+
+data <- population %>% 
+  filter(coa == "TUR") %>%
+  mutate(year = as.character(year))
+
+data %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y = refugees)) +
+  geom_point() +
+  labs(title = "Refugees Over Years",
+       x = "Year",
+       y = "Refugees")
 ```
