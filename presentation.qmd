@@ -95,7 +95,7 @@ wiki_country_pop_tbl$Population = parse_number(wiki_country_pop_tbl$Population, 
 
 
 
-colnames(population)[colnames(population) == 'coo_name'] <- 'Location'
+colnames(population)[colnames(population) == 'coo_name'] <- "Location"
 populations_wiki_coo <- merge(population, wiki_country_pop_tbl, by = "Location")
 
 colnames(population)[colnames(population) == 'Location'] <- 'coo_name'
