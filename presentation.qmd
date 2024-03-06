@@ -11,6 +11,16 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r}
+library(tidyverse)
+library(dplyr)
+library(rvest)
+library(httr)
+library(readr)
+library(readr)
+```
+
+
 # Start 
 
 ## Outline
@@ -48,15 +58,6 @@ question + approach
 graphs + discussion 
 <<<<<<< Updated upstream
 ```{r, echo=FALSE}
-library(tidyverse)
-library(dplyr)
-library(rvest)
-library(httr)
-library(readr)
-library(readr)
-population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
-colnames(population)[colnames(population) == 'coo_name'] <- 'Location'
-
 url <- "https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"
 
 ## Scrape html and store table
@@ -89,10 +90,18 @@ wiki_country_pop_tbl[wiki_country_pop_tbl == 'Norway[n]'] <- 'Norway'
 wiki_country_pop_tbl[wiki_country_pop_tbl == 'Palestine[o]'] <- 'Palestine'
 wiki_country_pop_tbl[wiki_country_pop_tbl == 'Georgia[p]'] <- 'Georgia'
 wiki_country_pop_tbl[wiki_country_pop_tbl == 'Moldova[q]'] <- 'Moldova'
-
 wiki_country_pop_tbl$Population = parse_number(wiki_country_pop_tbl$Population, )
 
-final_df <- merge(population, wiki_country_pop_tbl, by = "Location")
+
+
+population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
+
+colnames(population)[colnames(population) == 'coo_name'] <- 'Location'
+populations_wiki_coo <- merge(population, wiki_country_pop_tbl, by = "Location")
+
+colnames(population)[colnames(population) == 'Location'] <- 'coo_name'
+colnames(population)[colnames(population) == 'coa_name'] <- 'Location'
+populations_wiki_coa <- merge(population, wiki_country_pop_tbl, by = "Location")
 ```
 
 ```{r}
@@ -101,8 +110,8 @@ final_df <- merge(population, wiki_country_pop_tbl, by = "Location")
 #| message: false
 #| fig.asp: .5
 
-library(tidyverse)
-populations <- read_csv("data/population.csv")
+
+#populations <- read_csv("data/population.csv")
 
 populations22 <- populations %>%
   filter(year == 2022) 
@@ -116,10 +125,45 @@ populations22_coa <- populations22 %>%
   summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
 
 
+
+populations22_wiki_o <- populations_wiki_coa %>%  #The population with respect to the origin
+  filter(year == 2022) 
+
+populations22_wiki_a <- populations_wiki_coo %>%  #The population with respect to the asylum
+  filter(year == 2022) 
+
+populations22_wiki_coo <- populations22_wiki_o %>%
+  group_by(coo) %>%
+  summarize(pop_div_refugee = Population / sum(refugees + asylum_seekers))
+
+populations22_wiki_coa <- populations22_wiki_a %>%
+  group_by(coa) %>%
+  summarize(pop_div_refugee = Population / sum(refugees + asylum_seekers))
+
+
+
 populations22_coo %>% 
   arrange(-total_refugees_and_asylum_seekers) %>%
   head(n=10) %>%
   ggplot(aes(y=total_refugees_and_asylum_seekers, x = coo, fill=coo)) +
+  geom_col()
+
+populations22_coa %>% 
+  arrange(-total_refugees_and_asylum_seekers) %>%
+  head(n=10) %>%
+  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa, fill=coa)) +
+  geom_col()
+
+populations22_wiki_coa %>% 
+  arrange(-pop_div_refugee) %>%
+  head(n=10) %>%
+  ggplot(aes(y=pop_div_refugee, x = coa, fill=coa)) +
+  geom_col()
+
+populations22_wiki_coo %>% 
+  arrange(-pop_div_refugee) %>%
+  head(n=10) %>%
+  ggplot(aes(y=pop_div_refugee, x = coo, fill=coo)) +
   geom_col()
 ```
 
