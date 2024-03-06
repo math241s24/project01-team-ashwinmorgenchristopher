@@ -23,6 +23,7 @@ library(httr)
 library(readr)
 library(readr)
 library(RColorBrewer)
+library(tidyr)
 ```
 
 
@@ -317,7 +318,7 @@ tur_all %>%
 
 
 ### Graph 2
-```{r, eval=F}
+```{r}
 #| echo: false
 #| warning: false
 #| message: false
@@ -342,19 +343,20 @@ tur_decade_sum <- tur_decade%>%
             asylum_seekers = sum(asylum_seekers),
             returned_refugees = sum(returned_refugees),
             stateless = sum(stateless),
-            ooc = sum(ooc)) 
+            ooc = sum(ooc)) %>%
+  pivot_longer(!decades, names_to = "condition", values_to = "count")
+
+
+
 tur_decade_sum %>%
-  
-  #gather(key = "variable", value = "value", -decades) %>%
-  #ggplot(aes(x = decades, y = value, fill = variable)) +
-  #geom_bar(stat = "identity", position = "stack") +
-  
+  ggplot(aes(x = decades, y = count, fill = condition)) +
+  geom_bar(stat = "identity", position = "stack") +
   scale_y_continuous(trans = 'log10', labels = scales::trans_format("log10", scales::math_format(10^.x))) +
   labs(title = "Refugee Demographics in Turkey Over Time",
        x = "Decade",
        y = "Count",
        fill = "Refugee Categories") +
-  scale_fill_manual(values = custom_blue_palette, labels = c(
+  scale_fill_brewer(palette = "Set2", labels = c(
     "refugees" = "Refugees",
     "asylum_seekers" = "Asylum Seekers",
     "returned_refugees" = "Returned Refugees",

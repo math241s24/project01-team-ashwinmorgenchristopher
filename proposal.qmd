@@ -35,7 +35,7 @@ populations
 ```
 
 | variable          | class     | description                                                     |
-|-------------------|-----------|-----------------------------------------------------------------|
+|--------------|--------------|--------------------------------------------|
 | year              | double    | The year.                                                       |
 | coo_name          | character | Country of origin name.                                         |
 | coo               | character | Country of origin UNHCR code.                                   |
