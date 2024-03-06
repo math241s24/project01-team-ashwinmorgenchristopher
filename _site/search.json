@@ -51,7 +51,7 @@
   {
     "objectID": "presentation.html#introduction",
     "href": "presentation.html#introduction",
-    "title": "Project Presentation",
+    "title": "TITLE",
     "section": "Introduction",
     "text": "Introduction\n\nThis data comes from the PopulationStatistics {refugees} R package.\nThe package is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder.\nIt provides an easy-to-use interface to the database, which covers forcibly displaced populations.This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years.\n\nThe {refugees} package includes eight datasets.\nWe will specifically be working with population data from 2010 to 2022.\nThis dataset has 126262 observations and 16 variables."
   },
@@ -114,8 +114,29 @@
   {
     "objectID": "presentation.html#q1-graphics",
     "href": "presentation.html#q1-graphics",
-    "title": "Project Presentation",
+    "title": "TITLE",
     "section": "Q1 Graphics",
-    "text": "Q1 Graphics\n\nQ1aQ1bQ1cQ1d\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# A tibble: 0 × 0"
+    "text": "Q1 Graphics\n\nQ1aQ1b"
+  },
+  {
+    "objectID": "presentation.html#q1-graphics---alt",
+    "href": "presentation.html#q1-graphics---alt",
+    "title": "TITLE",
+    "section": "Q1 Graphics - ALT",
+    "text": "Q1 Graphics - ALT\n\nQ1aQ1bQ1cQ1d\n\n\n\n\n\npopulations22_coa %&gt;% arrange(-total_refugees_and_asylum_seekers) %&gt;% head(n=10) %&gt;% ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa, fill=coa)) + geom_col()"
+  },
+  {
+    "objectID": "presentation.html#question-2",
+    "href": "presentation.html#question-2",
+    "title": "TITLE",
+    "section": "Question 2",
+    "text": "Question 2\nHow have refugee populations changed in Turkey over time?"
+  },
+  {
+    "objectID": "presentation.html#question-2-1",
+    "href": "presentation.html#question-2-1",
+    "title": "TITLE",
+    "section": "Question 2",
+    "text": "Question 2\n\nGraph 1Graph 2"
   }
 ]
