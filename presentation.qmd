@@ -39,7 +39,11 @@ question + approach
 ## Q1
 graphs + discussion 
 ```{r, echo=FALSE}
-
+library(tidyverse)
+library(dplyr)
+library(rvest)
+library(httr)
+library(readr)
 library(readr)
 population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
 colnames(population)[colnames(population) == 'coo_name'] <- 'Location'
