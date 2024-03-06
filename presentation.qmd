@@ -150,7 +150,7 @@ populations22_coo %>%
 
 ```
 
-## Q1
+## Q1b
 
 ```{r}
 #| echo: false
@@ -166,7 +166,7 @@ populations22_coa %>%
   geom_col()
 ```
 
-## Q1
+## Q1c
 
 ```{r}
 #| echo: false
@@ -181,7 +181,7 @@ populations22_wiki_coa %>%
   geom_col()
 ```
 
-## Q1
+## Q1d
 
 ```{r}
 #| echo: false
