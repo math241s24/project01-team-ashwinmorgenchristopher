@@ -113,9 +113,6 @@ populations_wiki_coa <- merge(population, wiki_country_pop_tbl, by = "Location")
 #| message: false
 #| fig.asp: .5
 
-
-population <- read_csv("data/population.csv")
-
 populations22 <- population %>%
   filter(year == 2022) 
 
@@ -130,18 +127,22 @@ populations22_coa <- populations22 %>%
 
 
 populations22_wiki_o <- populations_wiki_coa %>%  #The population with respect to the origin
-  filter(year == 2022) 
+  filter(year == "2022") %>%
+  group_by(Location) %>%
+  summarize(total__refugees_leaving_origin = sum(refugees + asylum_seekers))
 
 populations22_wiki_a <- populations_wiki_coo %>%  #The population with respect to the asylum
-  filter(year == 2022) 
+  filter(year == "2022") %>%
+  group_by(Location) %>%
+  summarize(total__refugees_arriving_asylum = sum(refugees + asylum_seekers))
 
 populations22_wiki_coo <- populations22_wiki_o %>%
   group_by(coo) %>%
-  summarize(pop_div_refugee = Population / sum(refugees + asylum_seekers))
+  summarize(pop_div_refugee = Population / total__refugees_leaving_origin)
 
 populations22_wiki_coa <- populations22_wiki_a %>%
   group_by(coa) %>%
-  summarize(pop_div_refugee = Population / sum(refugees + asylum_seekers))
+  summarize(pop_div_refugee = Population / total__refugees_arriving_asylum)
 
 
 
@@ -161,16 +162,40 @@ populations22_coo %>%
 #| message: false
 #| fig.asp: .5
 
+test <- populations_wiki_coo %>%
+  group_by(Population) %>%
+  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))%>%
+  filter(row_number() < 167) %>%  #removing India and China
+  filter(row_number() != 142) #removing Afghanistan
+
+#Ethiopia is still sort of an outlier
+
+ggplot(test, aes(y=total_refugees_and_asylum_seekers, x = Population)) + geom_point()
+```
 
 populations22_coa %>% 
   arrange(-total_refugees_and_asylum_seekers) %>%
   head(n=10) %>%
   ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa, fill=coa)) +
   geom_col()
-```
+
 
 ### Q1c
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+populations22_wiki_coo %>% 
+  arrange(pop_div_refugee) %>%
+  head(n=20) %>%
+  ggplot(aes(y=pop_div_refugee, x = reorder(coo, pop_div_refugee)), layer(size = 2)) +  geom_point() + labs(x="Countries", y = "")
+```
+
+
+### Q1d
 ```{r}
 #| echo: false
 #| warning: false
@@ -182,23 +207,7 @@ tibble()
 populations22_wiki_coa %>% 
   arrange(-pop_div_refugee) %>%
   head(n=10) %>%
-  ggplot(aes(y=pop_div_refugee, x = coa, fill=coa)) +
-  geom_col()
-```
-
-### Q1d
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-#| fig.asp: .5
-
-populations22_wiki_coo %>% 
-  arrange(-pop_div_refugee) %>%
-  head(n=10) %>%
-  ggplot(aes(y=pop_div_refugee, x = coo, fill=coo)) +
-  geom_col()
+  ggplot(aes(y=pop_div_refugee, x = coa, fill=coa)) + geom_col()
 ```
 
 :::
