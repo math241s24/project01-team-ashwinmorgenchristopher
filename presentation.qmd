@@ -59,7 +59,8 @@ graphs + discussion
 <<<<<<< Updated upstream
 ```{r, echo=FALSE}
 url <- "https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"
-
+population <- read_csv("data/population.csv")
+#population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
 ## Scrape html and store table
 
 #Grab all the tables and then navigate to the one you wanted.
@@ -94,8 +95,6 @@ wiki_country_pop_tbl$Population = parse_number(wiki_country_pop_tbl$Population, 
 
 
 
-population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
-
 colnames(population)[colnames(population) == 'coo_name'] <- 'Location'
 populations_wiki_coo <- merge(population, wiki_country_pop_tbl, by = "Location")
 
@@ -111,7 +110,7 @@ populations_wiki_coa <- merge(population, wiki_country_pop_tbl, by = "Location")
 #| fig.asp: .5
 
 
-#populations <- read_csv("data/population.csv")
+populations <- read_csv("data/population.csv")
 
 populations22 <- populations %>%
   filter(year == 2022) 
