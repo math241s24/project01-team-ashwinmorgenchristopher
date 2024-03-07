@@ -87,14 +87,14 @@ populations22 <- population %>%
 
 populations22_coo <- populations22 %>%
   group_by(coo_name) %>%
-  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
+  summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + idps + returned_idps + stateless + ooc))
 
 populations22_coo %>% 
-  arrange(-total_refugees_and_asylum_seekers) %>%
+  arrange(-total_refugees) %>%
   head(n=10) %>%
-  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coo_name, fill=coo_name)) +
+  ggplot(aes(y=total_refugees, x = coo_name, fill=coo_name)) +
   geom_col() +
-  geom_text(aes(label = total_refugees_and_asylum_seekers), vjust = -0.5, size = 3) + 
+  geom_text(aes(label = total_refugees), vjust = -0.5, size = 3) + 
   scale_y_continuous(labels = scales::comma_format()) +
   labs(title = "Top 10 Countries of Origin in 2022",
        x = NULL,
@@ -132,14 +132,14 @@ Correlates with the events:
 
 populations22_coa <- populations22 %>%
   group_by(coa_name) %>%
-  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
+   summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + idps + returned_idps + stateless + ooc))
 
 populations22_coa %>% 
-  arrange(-total_refugees_and_asylum_seekers) %>%
+  arrange(-total_refugees) %>%
   head(n=10) %>%
-  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa_name, fill=coa_name)) +
+  ggplot(aes(y=total_refugees, x = coa_name, fill=coa_name)) +
   geom_col() +
-  geom_text(aes(label = total_refugees_and_asylum_seekers), vjust = -0.5, size = 3) + 
+  geom_text(aes(label = total_refugees), vjust = -0.5, size = 3) + 
   scale_y_continuous(labels = scales::comma_format()) +
   labs(title = "Top 10 Countries of Asylum in 2022",
        x = NULL,
@@ -169,6 +169,8 @@ Three main types of countries of asylum:
 
 ## Question 2
 How have refugee populations changed in Turkey over time?
+
+
 
 ## Question 2 Graphics
 
@@ -200,9 +202,16 @@ tur_all %>%
 ```
 
 ### Graph 1
-The rate of growth is faster than exponential. Most of the growth occurs right after 2010.
+The general trend of refugees in Turkey is one of growth. 
+
+The rate of growth is faster than exponential. 
+
+Most of the growth occurs right after 2010.
 
 The rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.
+
+Influx after 2010 is likely due to Syrian refugees. This is reflected in current data which shows over 3.3 million syrian refugees in Turkey as of 2023.
+
 
 ### Graph 2
 ```{r}
@@ -261,5 +270,9 @@ tur_decade_sum %>%
 Refugees makes up the bulk of refugee demographics throughout time.
 
 Big jump in Asylum Seekers and Returned Refugees during and after 2010.
+
+The majority of rufugees in Turkey have historically been Refugees with Asylum Seekers also making up a large portion of the total starting in the 2000s. 
+
+Others of Concern to the UNHCR see a brief spike in the 2000s and 2010s. 
 
 :::
