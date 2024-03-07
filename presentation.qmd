@@ -26,7 +26,6 @@ library(RColorBrewer)
 library(tidyr)
 ```
 
-
 ```{r}
 #| eval: false
 #| echo: false
@@ -55,25 +54,25 @@ library(tidyr)
 
 ## Introduction {.smaller}
 
-* This data comes from the PopulationStatistics {refugees} R package.
+-   This data comes from the PopulationStatistics {refugees} R package.
 
-* The package is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder.
+-   The package is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder.
 
-* It provides an easy-to-use interface to the database, which covers forcibly displaced populations.This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. 
-  + The {refugees} package includes eight datasets. 
-  + We will specifically be working with population data from 2010 to 2022. 
-  + This dataset has 126262 observations and 16 variables. 
+-   It provides an easy-to-use interface to the database, which covers forcibly displaced populations.This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years.
+
+    -   The {refugees} package includes eight datasets.
+    -   We will specifically be working with population data from 2010 to 2022.
+    -   This dataset has 126262 observations and 16 variables.
 
 ## Question 1
 
 In the year 2022, how did geography affect refugee populations? Where are refugees coming from and where are they going to?
 
-
-
 ## Question 1 Graphics
-::: panel-tabset
 
+::: panel-tabset
 ### Graph 1
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -108,22 +107,20 @@ populations22_coo %>%
 
 ### Graph 1
 
-Top 3 countries of origin 
-  + Afghanistan
-  + Syria 
-  + Ukraine 
-  
+Top 3 countries of origin + Afghanistan + Syria + Ukraine
+
 4th country almost thrice as small
 
 Correlates with the events:
 
-- Taliban control Afghanistan
+-   Taliban control Afghanistan
 
-- Syrian conflict
+-   Syrian conflict
 
-- Russo-Ukranian war
+-   Russo-Ukranian war
 
 ### Graph 2
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -150,31 +147,30 @@ populations22_coa %>%
   theme(axis.text.x = element_blank())
 ```
 
-### Graph 2 
+### Graph 2
 
-Top 3 countries of Asylum are Turkey, Iran, and Germany 
-  
+Top 3 countries of Asylum are Turkey, Iran, and Germany
+
 The data have a more even spread.
 
 Three main types of countries of asylum:
 
-1. Near a country with some hardship (Turkey, Bangladesh, Poland)
+1.  Near a country with some hardship (Turkey, Bangladesh, Poland)
 
-2. Near many countries with some hardship (Uganda)
+2.  Near many countries with some hardship (Uganda)
 
-3. A good place to seek refuge (Germany, U.S.A.)
-
+3.  A good place to seek refuge (Germany, U.S.A.)
 :::
 
-
 ## Question 2
+
 How have refugee populations changed in Turkey over time?
 
 ## Question 2 Graphics
 
 ::: panel-tabset
-
 ### Graph 1
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -200,11 +196,13 @@ tur_all %>%
 ```
 
 ### Graph 1
+
 The rate of growth is faster than exponential. Most of the growth occurs right after 2010.
 
 The rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.
 
 ### Graph 2
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -258,8 +256,8 @@ tur_decade_sum %>%
 ```
 
 ### Graph 2
+
 Refugees makes up the bulk of refugee demographics throughout time.
 
 Big jump in Asylum Seekers and Returned Refugees during and after 2010.
-
 :::
