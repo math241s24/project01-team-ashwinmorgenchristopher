@@ -112,6 +112,16 @@ Top 3 countries of origin
   + Afghanistan
   + Syria 
   + Ukraine 
+  
+4th country almost thrice as small
+
+Correlates with the events:
+
+- Taliban control Afghanistan
+
+- Syrian conflict
+
+- Russo-Ukranian war
 
 ### Graph 2
 ```{r}
@@ -142,10 +152,17 @@ populations22_coa %>%
 
 ### Graph 2 
 
-Top 3 countries of Asylum  
-  + Turkey
-  + Iran 
-  + Germany 
+Top 3 countries of Asylum are Turkey, Iran, and Germany 
+  
+The data have a more even spread.
+
+Three main types of countries of asylum:
+
+1. Near a country with some hardship (Turkey, Bangladesh, Poland)
+
+2. Near many countries with some hardship (Uganda)
+
+3. A good place to seek refuge (Germany, U.S.A.)
 
 :::
 
@@ -183,7 +200,9 @@ tur_all %>%
 ```
 
 ### Graph 1
+The rate of growth is faster than exponential. Most of the growth occurs right after 2010.
 
+The rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.
 
 ### Graph 2
 ```{r}
@@ -239,5 +258,8 @@ tur_decade_sum %>%
 ```
 
 ### Graph 2
+Refugees makes up the bulk of refugee demographics throughout time.
+
+Big jump in Asylum Seekers and Returned Refugees during and after 2010.
 
 :::
