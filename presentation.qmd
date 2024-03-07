@@ -1,6 +1,6 @@
 ---
-title: "TITLE"
-subtitle: "Refugees"
+title: "Refugee Demographics by Geography and Time"
+subtitle: "By Ashwin, Morgen, and Christopher"
 format: 
   revealjs
 highlight-style: a11y
@@ -108,18 +108,15 @@ populations22_coo %>%
 
 ### Graph 1
 
-Top 3 countries of origin 
-  + Afghanistan
-  + Syria 
-  + Ukraine 
+Top 3 countries of origin: Syria, Afghanistan, and Ukraine 
   
-4th country almost thrice as small
+6th country almost six times smaller than the top
 
 Correlates with the events:
 
-- Taliban control Afghanistan
-
 - Syrian conflict
+
+- Taliban control Afghanistan
 
 - Russo-Ukranian war
 
@@ -158,11 +155,11 @@ The data have a more even spread.
 
 Three main types of countries of asylum:
 
-1. Near a country with some hardship (Turkey, Bangladesh, Poland)
+1. Near a country with some hardship (e.g. Turkey)
 
-2. Near many countries with some hardship (Uganda)
+2. Near many countries with some hardship (e.g. Uganda)
 
-3. A good place to seek refuge (Germany, U.S.A.)
+3. A good place to seek refuge (e.g. Germany)
 
 
 :::
