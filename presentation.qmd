@@ -21,7 +21,6 @@ library(dplyr)
 library(rvest)
 library(httr)
 library(readr)
-library(readr)
 library(RColorBrewer)
 library(tidyr)
 ```
@@ -195,16 +194,16 @@ tur_all %>%
         axis.text.y = element_text(size = 12)) 
 ```
 
-### Graph 1
-The general trend of refugees in Turkey is one of growth. 
+### Graph 1 {.smaller}
+*The general trend of refugees in Turkey is one of growth. 
 
-The rate of growth is faster than exponential. 
+*The rate of growth is faster than exponential. 
 
-Most of the growth occurs right after 2010.
+*Most of the growth occurs right after 2010.
 
-The rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.
+*The rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.
 
-Influx after 2010 is likely due to Syrian refugees. This is reflected in current data which shows over 3.3 million syrian refugees in Turkey as of 2023.
+*Influx after 2010 is likely due to Syrian refugees. This is reflected in current data which shows over 3.3 million syrian refugees in Turkey as of 2023.
 
 ### Graph 2
 
@@ -258,13 +257,13 @@ tur_decade_sum %>%
         axis.text.y = element_blank()) 
 ```
 
-### Graph 2
-Refugees makes up the bulk of refugee demographics throughout time.
+### Graph 2 {.smaller}
+*Refugees makes up the bulk of refugee demographics throughout time.
 
-Big jump in Asylum Seekers and Returned Refugees during and after 2010.
+*Big jump in Asylum Seekers and Returned Refugees during and after 2010.
 
-The majority of rufugees in Turkey have historically been Refugees with Asylum Seekers also making up a large portion of the total starting in the 2000s. 
+*The majority of rufugees in Turkey have historically been Refugees with Asylum Seekers also making up a large portion of the total starting in the 2000s. 
 
-Others of Concern to the UNHCR see a brief spike in the 2000s and 2010s. 
+*Others of Concern to the UNHCR see a brief spike in the 2000s and 2010s. 
 
 :::
