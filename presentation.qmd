@@ -150,157 +150,6 @@ Top 3 countries of Asylum
 :::
 
 
-## Q1 Graphics - ALT
-```{r, echo=FALSE}
-url <- "https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"
-population <- read_csv("data/population.csv")
-#population <- read_csv("project01-team-ashwinmorgenchristopher/data/population.csv")
-## Scrape html and store table
-
-#Grab all the tables and then navigate to the one you wanted.
-tables <- url %>%
-  read_html() %>%
-  html_nodes(css = "table")
-
-#Grab the specific table
-wiki_country_pop_tbl <- html_table(tables[[1]], fill = TRUE) %>%
-  filter(row_number() > 1)
-colnames(wiki_country_pop_tbl)[4] <- "Population"
-wiki_country_pop_tbl <- select(wiki_country_pop_tbl, 'Location', 'Population')
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'China[a]'] <- 'China'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Tanzania[b]'] <- 'Tanzania'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'France[c]'] <- 'France'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Spain[d]'] <- 'Spain'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Ukraine[e]'] <- 'Ukraine'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Australia[f]'] <- 'Australia'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Ukraine[e]'] <- 'Ukraine'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Somalia[h]'] <- 'Somalia'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Taiwan[g]'] <- 'Taiwan'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Netherlands[i]'] <- 'Netherlands'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Portugal[j]'] <- 'Portugal'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Hong Kong (China)[k]'] <- 'Hong Kong'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Serbia[l]'] <- 'Serbia'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Finland[m]'] <- 'Finland'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Norway[n]'] <- 'Norway'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Palestine[o]'] <- 'Palestine'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Georgia[p]'] <- 'Georgia'
-wiki_country_pop_tbl[wiki_country_pop_tbl == 'Moldova[q]'] <- 'Moldova'
-wiki_country_pop_tbl$Population = parse_number(wiki_country_pop_tbl$Population, )
-
-
-
-colnames(population)[colnames(population) == 'coo_name'] <- "Location"
-populations_wiki_coo <- merge(population, wiki_country_pop_tbl, by = "Location")
-
-colnames(population)[colnames(population) == 'Location'] <- 'coo_name'
-colnames(population)[colnames(population) == 'coa_name'] <- 'Location'
-populations_wiki_coa <- merge(population, wiki_country_pop_tbl, by = "Location")
-```
-::: panel-tabset
-### Q1a
-```{r, eval=F}
-#| echo: false
-#| warning: false
-#| message: false
-#| fig.asp: .5
-
-populations22 <- population %>%
-  filter(year == 2022) 
-
-populations22_coo <- populations22 %>%
-  group_by(coo) %>%
-  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
-
-populations22_coa <- populations22 %>%
-  group_by(coa) %>%
-  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
-
-
-
-populations22_wiki_o <- populations_wiki_coa %>%  #The population with respect to the origin
-  filter(year == "2022") %>%
-  group_by(Location) %>%
-  summarize(total__refugees_leaving_origin = sum(refugees + asylum_seekers))
-
-populations22_wiki_a <- populations_wiki_coo %>%  #The population with respect to the asylum
-  filter(year == "2022") %>%
-  group_by(Location) %>%
-  summarize(total__refugees_arriving_asylum = sum(refugees + asylum_seekers))
-
-populations22_wiki_coo <- populations22_wiki_o %>%
-  group_by(coo) %>%
-  summarize(pop_div_refugee = Population / total__refugees_leaving_origin)
-
-populations22_wiki_coa <- populations22_wiki_a %>%
-  group_by(coa) %>%
-  summarize(pop_div_refugee = Population / total__refugees_arriving_asylum)
-
-
-
-populations22_coo %>% 
-  arrange(-total_refugees_and_asylum_seekers) %>%
-  head(n=10) %>%
-  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coo, fill=coo)) +
-  geom_col()
-
-```
-### Q1b
-```{r, eval=F}
-#| echo: false
-#| warning: false
-#| message: false
-#| fig.asp: .5
-
-test <- populations_wiki_coo %>%
-  group_by(Population) %>%
-  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))%>%
-  filter(row_number() < 167) %>%  #removing India and China
-  filter(row_number() != 142) #removing Afghanistan
-
-#Ethiopia is still sort of an outlier
-
-ggplot(test, aes(y=total_refugees_and_asylum_seekers, x = Population)) + geom_point()
-```
-
-populations22_coa %>% 
-  arrange(-total_refugees_and_asylum_seekers) %>%
-  head(n=10) %>%
-  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa, fill=coa)) +
-  geom_col()
-
-### Q1c
-```{r, eval=F}
-#| echo: false
-#| warning: false
-#| message: false
-#| fig.asp: .5
-
-populations22_wiki_coo %>% 
-  arrange(pop_div_refugee) %>%
-  head(n=20) %>%
-  ggplot(aes(y=pop_div_refugee, x = reorder(coo, pop_div_refugee)), layer(size = 2)) +  geom_point() + labs(x="Countries", y = "")
-```
-
-### Q1d
-```{r, eval=F}
-#| echo: false
-#| warning: false
-#| message: false
-#| fig.asp: .5
-
-tibble()
-
-populations22_wiki_coa %>% 
-  arrange(-pop_div_refugee) %>%
-  head(n=10) %>%
-  ggplot(aes(y=pop_div_refugee, x = coa, fill=coa)) + geom_col()
-```
-
-:::
-
-
-
-
 ## Question 2
 How have refugee populations changed in Turkey over time?
 
@@ -333,6 +182,7 @@ tur_all %>%
         axis.text.y = element_text(size = 12)) 
 ```
 
+### Graph 1
 
 
 ### Graph 2
@@ -370,8 +220,8 @@ tur_decade_sum %>%
   filter(count > 0) %>%
   ggplot(aes(x = decades, y = count, fill = condition)) +
   geom_bar(stat = "identity", position = "stack") +
+   scale_y_continuous(trans = 'log10') +
   geom_text(aes(label = count), position = position_stack(vjust = 0.5), size = 3) +
-  scale_y_continuous(trans = 'log10', labels = scales::trans_format("log10", scales::math_format(10^.x))) +
   labs(title = "Refugee Demographics in Turkey Over Time",
        x = "Decade",
        y = "Count",
@@ -385,7 +235,9 @@ tur_decade_sum %>%
   ))  +
     theme_minimal() +
   theme(axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12)) 
+        axis.text.y = element_blank()) 
 ```
+
+### Graph 2
 
 :::
