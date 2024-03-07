@@ -1,6 +1,6 @@
 ---
-title: "Project Presentation"
-subtitle: "The data we have chosen"
+title: "TITLE"
+subtitle: "Refugees"
 format: 
   revealjs
 highlight-style: a11y
@@ -11,20 +11,255 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(dplyr)
+library(rvest)
+library(httr)
+library(readr)
+library(readr)
+library(RColorBrewer)
+library(tidyr)
+```
+
+
+```{r}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+
 ## Outline
 
-* Your presentation should generally follow the same structure as your write-up. 
+#* Your presentation should generally follow the same structure as your write-up. 
 
-* Each team will have 5 minutes for their presentation, and each team member must speak (roughly equally) during this time. 
+#* Each team will have 5 minutes for their presentation, and each team member must speak (roughly equally) during this time. 
 
-* Your presentation will be created using `Quarto`, which allows you to write slides using the same coding structure you’re used to with `Rmarkdown`. 
+#* Your presentation will be created using `Quarto`, which allows you to write slides using the same coding structure you’re used to with `Rmarkdown`. 
 
-* This is a sample Quarto slide template you can edit to your desire to create your presentation. 
+#* This is a sample Quarto slide template you can edit to your desire to create your presentation. 
 
 ## Rubric
 
-* Roughly I recommend 1 slide for introduction, 2 slides for Question 1, ans 2 slides for Question 2. 
-  + You can imagine spending roughly one minute on each slide.
-  + You should feel free to have more (or fewer) slides. 
+#* Roughly I recommend 1 slide for introduction, 2 slides for Question 1, ans 2 slides for Question 2. 
+ # + You can imagine spending roughly one minute on each slide.
+  #+ You should feel free to have more (or fewer) slides. 
   
-* Your evaluation will be based on your content, professionalism (including sticking to time), and your performance during the Q&A (question and answer). We don’t care how many slides you use to do this.
+#* Your evaluation will be based on your content, professionalism (including sticking to time), and your performance during the Q&A (question and answer). We don’t care how many slides you use to do this.
+
+```
+
+## Introduction {.smaller}
+
+* This data comes from the PopulationStatistics {refugees} R package.
+
+* The package is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder.
+
+* It provides an easy-to-use interface to the database, which covers forcibly displaced populations.This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years. 
+  + The {refugees} package includes eight datasets. 
+  + We will specifically be working with population data from 2010 to 2022. 
+  + This dataset has 126262 observations and 16 variables. 
+
+## Question 1
+
+In the year 2022, how did geography affect refugee populations? Where are refugees coming from and where are they going to?
+
+
+
+## Question 1 Graphics
+::: panel-tabset
+
+### Graph 1
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+population <- read_csv("data/population.csv")
+
+populations22 <- population %>%
+  filter(year == 2022) 
+
+populations22_coo <- populations22 %>%
+  group_by(coo_name) %>%
+  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
+
+populations22_coo %>% 
+  arrange(-total_refugees_and_asylum_seekers) %>%
+  head(n=10) %>%
+  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coo_name, fill=coo_name)) +
+  geom_col() +
+  geom_text(aes(label = total_refugees_and_asylum_seekers), vjust = -0.5, size = 3) + 
+  scale_y_continuous(labels = scales::comma_format()) +
+  labs(title = "Top 10 Countries of Origin in 2022",
+       x = NULL,
+       y = "Total Refugees and Asylum Seekers",
+       fill = "Country of Origin") +
+  scale_fill_brewer( palette = "Spectral")  +
+  theme_minimal() +
+  theme(axis.text.x = element_blank())
+
+```
+
+### Graph 1
+
+Top 3 countries of origin 
+  + Afghanistan
+  + Syria 
+  + Ukraine 
+  
+4th country almost thrice as small
+
+Correlates with the events:
+
+- Taliban control Afghanistan
+
+- Syrian conflict
+
+- Russo-Ukranian war
+
+### Graph 2
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+populations22_coa <- populations22 %>%
+  group_by(coa_name) %>%
+  summarize(total_refugees_and_asylum_seekers = sum(refugees + asylum_seekers))
+
+populations22_coa %>% 
+  arrange(-total_refugees_and_asylum_seekers) %>%
+  head(n=10) %>%
+  ggplot(aes(y=total_refugees_and_asylum_seekers, x = coa_name, fill=coa_name)) +
+  geom_col() +
+  geom_text(aes(label = total_refugees_and_asylum_seekers), vjust = -0.5, size = 3) + 
+  scale_y_continuous(labels = scales::comma_format()) +
+  labs(title = "Top 10 Countries of Asylum in 2022",
+       x = NULL,
+       y = "Total Refugees and Asylum Seekers",
+       fill = "Country of Asylum") +
+  scale_fill_brewer( palette = "Spectral")  +
+  theme_minimal() +
+  theme(axis.text.x = element_blank())
+```
+
+### Graph 2 
+
+Top 3 countries of Asylum are Turkey, Iran, and Germany 
+  
+The data have a more even spread.
+
+Three main types of countries of asylum:
+
+1. Near a country with some hardship (Turkey, Bangladesh, Poland)
+
+2. Near many countries with some hardship (Uganda)
+
+3. A good place to seek refuge (Germany, U.S.A.)
+
+:::
+
+
+## Question 2
+How have refugee populations changed in Turkey over time?
+
+## Question 2 Graphics
+
+::: panel-tabset
+
+### Graph 1
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+tur_all <- population %>% 
+  filter(coa == "TUR") %>%
+  group_by(year) %>%
+  summarise(ref_count = sum(refugees + asylum_seekers + returned_refugees + idps + returned_idps + stateless + ooc))
+
+tur_all %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y = ref_count)) +
+  geom_point(size = 3, alpha = .8) +
+  geom_smooth() +
+  scale_y_continuous(trans = 'log10', labels = scales::trans_format("log10", format = scales::math_format(10^.x))) +
+  labs(title = "All Refugees in Turkey Over Time",
+       x = "Year",
+       y = "Number of Total Refugees") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12)) 
+```
+
+### Graph 1
+The rate of growth is faster than exponential. Most of the growth occurs right after 2010.
+
+The rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.
+
+### Graph 2
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+custom_blue_palette <- brewer.pal(n = 8, name = "Blues")[3:8]
+
+tur_decade <- population %>% 
+  filter(coa == "TUR") %>%
+  mutate(decades = case_when(
+    between(year, 1950, 1959) ~ "1950s",
+    between(year, 1960, 1969) ~ "1960s",
+    between(year, 1970, 1979) ~ "1970s",
+    between(year, 1980, 1989) ~ "1980s",
+    between(year, 1990, 1999) ~ "1990s",
+    between(year, 2000, 2009) ~ "2000s",
+    between(year, 2010, 2019) ~ "2010s",
+    between(year, 2020, 2029) ~ "2020s"))
+
+tur_decade_sum <- tur_decade%>%
+  group_by(decades) %>%
+  summarise(refugees = sum(refugees),
+            asylum_seekers = sum(asylum_seekers),
+            returned_refugees = sum(returned_refugees),
+            stateless = sum(stateless),
+            ooc = sum(ooc)) %>%
+  pivot_longer(!decades, names_to = "condition", values_to = "count")
+
+
+
+tur_decade_sum %>%
+  filter(count > 0) %>%
+  ggplot(aes(x = decades, y = count, fill = condition)) +
+  geom_bar(stat = "identity", position = "stack") +
+   scale_y_continuous(trans = 'log10') +
+  geom_text(aes(label = count), position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = "Refugee Demographics in Turkey Over Time",
+       x = "Decade",
+       y = "Count",
+       fill = "Refugee Categories") +
+  scale_fill_brewer(palette = "Set2", labels = c(
+    "refugees" = "Refugees",
+    "asylum_seekers" = "Asylum Seekers",
+    "returned_refugees" = "Returned Refugees",
+    "stateless" = "Stateless Persons",
+    "ooc" = "Others of Concern to UNHCR"
+  ))  +
+    theme_minimal() +
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_blank()) 
+```
+
+### Graph 2
+Refugees makes up the bulk of refugee demographics throughout time.
+
+Big jump in Asylum Seekers and Returned Refugees during and after 2010.
+
+:::
