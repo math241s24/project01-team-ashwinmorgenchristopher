@@ -134,6 +134,9 @@ populations22_coa <- populations22 %>%
   group_by(coa_name) %>%
    summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + stateless + ooc))
 
+populations22_coa <- populations22_coa %>%
+  filter(coa_name != "Venezuela (Bolivarian Republic of)")
+
 populations22_coa %>% 
   arrange(-total_refugees) %>%
   head(n=10) %>%
@@ -152,7 +155,7 @@ populations22_coa %>%
 
 ### Graph 2 
 
-Top 3 countries of Asylum are Turkey, Iran, and Venezuela 
+Top 3 countries of Asylum are Turkey, Iran, and Germany
   
 The data have a more even spread.
 
