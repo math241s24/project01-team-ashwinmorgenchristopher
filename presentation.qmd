@@ -87,7 +87,7 @@ populations22 <- population %>%
 
 populations22_coo <- populations22 %>%
   group_by(coo_name) %>%
-  summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + idps + returned_idps + stateless + ooc))
+  summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + stateless + ooc))
 
 populations22_coo %>% 
   arrange(-total_refugees) %>%
@@ -132,7 +132,7 @@ Correlates with the events:
 
 populations22_coa <- populations22 %>%
   group_by(coa_name) %>%
-   summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + idps + returned_idps + stateless + ooc))
+   summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + stateless + ooc))
 
 populations22_coa %>% 
   arrange(-total_refugees) %>%
@@ -152,7 +152,7 @@ populations22_coa %>%
 
 ### Graph 2 
 
-Top 3 countries of Asylum are Turkey, Iran, and Germany 
+Top 3 countries of Asylum are Turkey, Iran, and Venezuela 
   
 The data have a more even spread.
 
@@ -163,6 +163,7 @@ Three main types of countries of asylum:
 2. Near many countries with some hardship (Uganda)
 
 3. A good place to seek refuge (Germany, U.S.A.)
+
 
 :::
 
@@ -185,7 +186,7 @@ How have refugee populations changed in Turkey over time?
 tur_all <- population %>% 
   filter(coa == "TUR") %>%
   group_by(year) %>%
-  summarise(ref_count = sum(refugees + asylum_seekers + returned_refugees + idps + returned_idps + stateless + ooc))
+  summarise(ref_count = sum(refugees + asylum_seekers + returned_refugees + stateless + ooc))
 
 tur_all %>%
   group_by(year) %>%
