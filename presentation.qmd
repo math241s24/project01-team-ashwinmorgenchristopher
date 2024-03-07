@@ -79,7 +79,7 @@ In the year 2022, how did geography affect refugee populations? Where are refuge
 #| message: false
 #| fig.asp: .5
 
-population <- read_csv("data/population.csv")
+population <- read.csv("data/population.csv")
 
 populations22 <- population %>%
   filter(year == 2022) 
@@ -184,9 +184,9 @@ tur_all <- population %>%
 tur_all %>%
   group_by(year) %>%
   ggplot(aes(x = year, y = ref_count)) +
-  geom_point(size = 3, alpha = .8) +
+  geom_point(size = 3, alpha = .5) +
   geom_smooth() +
-  scale_y_continuous(trans = 'log10', labels = scales::trans_format("log10", format = scales::math_format(10^.x))) +
+  scale_y_continuous(trans = 'log10', labels = scales::comma_format()) +
   labs(title = "All Refugees in Turkey Over Time",
        x = "Year",
        y = "Number of Total Refugees") +
@@ -196,10 +196,15 @@ tur_all %>%
 ```
 
 ### Graph 1
+The general trend of refugees in Turkey is one of growth. 
 
-The rate of growth is faster than exponential. Most of the growth occurs right after 2010.
+The rate of growth is faster than exponential. 
+
+Most of the growth occurs right after 2010.
 
 The rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.
+
+Influx after 2010 is likely due to Syrian refugees. This is reflected in current data which shows over 3.3 million syrian refugees in Turkey as of 2023.
 
 ### Graph 2
 
@@ -207,8 +212,6 @@ The rate of natural population growth should be a straight line on a log graph. 
 #| echo: false
 #| warning: false
 #| message: false
-
-custom_blue_palette <- brewer.pal(n = 8, name = "Blues")[3:8]
 
 tur_decade <- population %>% 
   filter(coa == "TUR") %>%
@@ -256,8 +259,12 @@ tur_decade_sum %>%
 ```
 
 ### Graph 2
-
 Refugees makes up the bulk of refugee demographics throughout time.
 
 Big jump in Asylum Seekers and Returned Refugees during and after 2010.
+
+The majority of rufugees in Turkey have historically been Refugees with Asylum Seekers also making up a large portion of the total starting in the 2000s. 
+
+Others of Concern to the UNHCR see a brief spike in the 2000s and 2010s. 
+
 :::
