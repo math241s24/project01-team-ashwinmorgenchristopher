@@ -1,6 +1,6 @@
 ---
-title: "TITLE"
-subtitle: "Refugees"
+title: "Global Refugee Movements & Trends"
+subtitle: "Morgen, Christopher, & Ashwin"
 format: 
   revealjs
 highlight-style: a11y

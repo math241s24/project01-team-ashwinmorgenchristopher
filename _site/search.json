@@ -51,7 +51,7 @@
   {
     "objectID": "presentation.html#introduction",
     "href": "presentation.html#introduction",
-    "title": "Refugee Demographics by Geography and Time",
+    "title": "Global Refugee Movements & Trends",
     "section": "Introduction",
     "text": "Introduction\n\nThis data comes from the PopulationStatistics {refugees} R package.\nThe package is designed to give people access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder.\nIt provides an easy-to-use interface to the database, which covers forcibly displaced populations.This includes refugees, asylum-seekers, internally displaced people, stateless people, and others over a span of more than 70 years.\n\nThe {refugees} package includes eight datasets.\nWe will specifically be working with population data from 2010 to 2022.\nThis dataset has 126262 observations and 16 variables."
   },
@@ -128,7 +128,7 @@
   {
     "objectID": "presentation.html#question-2",
     "href": "presentation.html#question-2",
-    "title": "Refugee Demographics by Geography and Time",
+    "title": "Global Refugee Movements & Trends",
     "section": "Question 2",
     "text": "Question 2\nHow have refugee populations changed in Turkey over time?"
   },
@@ -142,22 +142,22 @@
   {
     "objectID": "presentation.html#question-1",
     "href": "presentation.html#question-1",
-    "title": "Refugee Demographics by Geography and Time",
+    "title": "Global Refugee Movements & Trends",
     "section": "Question 1",
     "text": "Question 1\nIn the year 2022, how did geography affect refugee populations? Where are refugees coming from and where are they going to?"
   },
   {
     "objectID": "presentation.html#question-1-graphics",
     "href": "presentation.html#question-1-graphics",
-    "title": "Refugee Demographics by Geography and Time",
+    "title": "Global Refugee Movements & Trends",
     "section": "Question 1 Graphics",
-    "text": "Question 1 Graphics\n\nGraph 1Graph 1Graph 2Graph 2\n\n\n\n\n\n\n\n\n\nTop 3 countries of origin: Syria, Afghanistan, and Ukraine\n6th country almost six times smaller than the top\nCorrelates with the events:\n\nSyrian conflict\nTaliban control Afghanistan\nRusso-Ukranian war\n\n\n\n\n\n\n\n\n\n\nTop 3 countries of Asylum are Turkey, Iran, and Germany\nThe data have a more even spread.\nThree main types of countries of asylum:\n\nNear a country with some hardship (e.g. Turkey)\nNear many countries with some hardship (e.g. Uganda)\nA good place to seek refuge (e.g. Germany)"
+    "text": "Question 1 Graphics\n\nGraph 1Graph 1Graph 2Graph 2\n\n\n\n\n\n\n\n\n\nTop 3 countries of origin + Afghanistan + Syria + Ukraine\n4th country almost thrice as small\nCorrelates with the events:\n\nTaliban control Afghanistan\nSyrian conflict\nRusso-Ukranian war\n\n\n\n\n\n\n\n\n\n\nTop 3 countries of Asylum are Turkey, Iran, and Germany\nThe data have a more even spread.\nThree main types of countries of asylum:\n\nNear a country with some hardship (Turkey, Bangladesh, Poland)\nNear many countries with some hardship (Uganda)\nA good place to seek refuge (Germany, U.S.A.)"
   },
   {
     "objectID": "presentation.html#question-2-graphics",
     "href": "presentation.html#question-2-graphics",
-    "title": "Refugee Demographics by Geography and Time",
+    "title": "Global Refugee Movements & Trends",
     "section": "Question 2 Graphics",
-    "text": "Question 2 Graphics\n\nGraph 1Graph 1Graph 2Graph 2\n\n\n\n\n\n\n\n\n\nThe general trend of refugees in Turkey is one of growth.\nThe rate of growth is faster than exponential.\nMost of the growth occurs right after 2010.\nThe rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.\nInflux after 2010 is likely due to Syrian refugees. This is reflected in current data which shows over 3.3 million syrian refugees in Turkey as of 2023.\n\n\n\n\n\n\n\n\n\nRefugees makes up the bulk of refugee demographics throughout time.\nBig jump in Asylum Seekers and Returned Refugees during and after 2010.\nThe majority of rufugees in Turkey have historically been Refugees with Asylum Seekers also making up a large portion of the total starting in the 2000s.\nOthers of Concern to the UNHCR see a brief spike in the 2000s and 2010s."
+    "text": "Question 2 Graphics\n\nGraph 1Graph 1Graph 2Graph 2\n\n\n\n\n\n\n\n\n\nThe rate of growth is faster than exponential. Most of the growth occurs right after 2010.\nThe rate of natural population growth should be a straight line on a log graph. This represents significant outside factors on the influx of Turkish refugees.\n\n\n\n\n\n\n\n\n\nRefugees makes up the bulk of refugee demographics throughout time.\nBig jump in Asylum Seekers and Returned Refugees during and after 2010."
   }
 ]
