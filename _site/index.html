@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -119,12 +153,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#write-up" id="toc-write-up" class="nav-link active" data-scroll-target="#write-up">Write-up</a>
+  <li><a href="#global-refugee-movements-trends" id="toc-global-refugee-movements-trends" class="nav-link active" data-scroll-target="#global-refugee-movements-trends">Global Refugee Movements &amp; Trends</a>
   <ul class="collapse">
-  <li><a href="#introduction-1-2-paragraphs" id="toc-introduction-1-2-paragraphs" class="nav-link" data-scroll-target="#introduction-1-2-paragraphs">Introduction (1-2 paragraphs):</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction:</a>
   <ul class="collapse">
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1:</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2:</a></li>
+  <li><a href="#question-1-in-the-year-2022-how-did-geography-affect-the-number-of-refugees-where-were-refugees-coming-from-and-where-were-they-going-to" id="toc-question-1-in-the-year-2022-how-did-geography-affect-the-number-of-refugees-where-were-refugees-coming-from-and-where-were-they-going-to" class="nav-link" data-scroll-target="#question-1-in-the-year-2022-how-did-geography-affect-the-number-of-refugees-where-were-refugees-coming-from-and-where-were-they-going-to">Question 1: In the year 2022, how did geography affect the number of refugees? Where were refugees coming from and where were they going to?</a></li>
+  <li><a href="#question-2-how-have-refugee-populations-changed-in-turkey-over-time" id="toc-question-2-how-have-refugee-populations-changed-in-turkey-over-time" class="nav-link" data-scroll-target="#question-2-how-have-refugee-populations-changed-in-turkey-over-time">Question 2: How have refugee populations changed in Turkey over time?</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -150,39 +184,279 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="write-up" class="level1">
-<h1>Write-up</h1>
-<p>Your write-up should consist of three parts:</p>
-<section id="introduction-1-2-paragraphs" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-1-2-paragraphs">Introduction (1-2 paragraphs):</h2>
-<p>Brief introduction to the dataset. You may repeat some of the information about the dataset provided in the introduction to the dataset on the <code>TidyTuesday</code> repository, for instance. Imagine that your project is a standalone document and the grader has no prior knowledge of the dataset.</p>
-<section id="question-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-1">Question 1:</h3>
-<p>The title should relate to the question you’re answering.</p>
-<section id="introduction-1-2-paragraphs-1" class="level4">
-<h4 class="anchored" data-anchor-id="introduction-1-2-paragraphs-1">Introduction (1-2 paragraphs):</h4>
-<p>Introduction to the question and what parts of the dataset are necessary to answer the question. Also discuss why you’re interested in this question.</p>
+<section id="global-refugee-movements-trends" class="level1">
+<h1>Global Refugee Movements &amp; Trends</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction:</h2>
+<p>The data utilized in our analysis originates from the <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-08-22/readme.md">{refugees} R package</a>, specifically designed to facilitate access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder. This package provides an easy-to-use interface to a comprehensive database spanning over 70 years and covering various forcibly displaced populations, including refugees, asylum-seekers, internally displaced people, stateless individuals, and others. It aggregates data from three primary sources: the UNHCR’s annual statistical reports dating back to 1951, the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), and the Internal Displacement Monitoring Centre (IDMC), focusing on individuals displaced within their own country due to conflict or violence. The {refugees} package encompasses eight datasets, with our analysis specifically targeting population data from 2010 to 2022. This dataset comprises 126,262 observations across 16 variables, offering a unique perspective on global displacement trends. Our research addresses critical questions, including the impact of geography on refugee populations in 2022—exploring the origins and destinations of refugees—and examining how refugee populations in Turkey have evolved over time. The following are each of the 16 variables available in this database.</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>class</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>year</td>
+<td>double</td>
+<td>The year.</td>
+</tr>
+<tr class="even">
+<td>coo_name</td>
+<td>character</td>
+<td>Country of origin name.</td>
+</tr>
+<tr class="odd">
+<td>coo</td>
+<td>character</td>
+<td>Country of origin UNHCR code.</td>
+</tr>
+<tr class="even">
+<td>coo_iso</td>
+<td>character</td>
+<td>Country of origin ISO code.</td>
+</tr>
+<tr class="odd">
+<td>coa_name</td>
+<td>character</td>
+<td>Country of asylum name.</td>
+</tr>
+<tr class="even">
+<td>coa</td>
+<td>character</td>
+<td>Country of asylum UNHCR code.</td>
+</tr>
+<tr class="odd">
+<td>coa_iso</td>
+<td>character</td>
+<td>Country of asylum ISO code.</td>
+</tr>
+<tr class="even">
+<td>refugees</td>
+<td>double</td>
+<td>The number of refugees.</td>
+</tr>
+<tr class="odd">
+<td>asylum_seekers</td>
+<td>double</td>
+<td>The number of asylum-seekers.</td>
+</tr>
+<tr class="even">
+<td>returned_refugees</td>
+<td>double</td>
+<td>The number of returned refugees.</td>
+</tr>
+<tr class="odd">
+<td>idps</td>
+<td>double</td>
+<td>The number of internally displaced persons.</td>
+</tr>
+<tr class="even">
+<td>returned_idps</td>
+<td>double</td>
+<td>The number of returned internally displaced persons.</td>
+</tr>
+<tr class="odd">
+<td>stateless</td>
+<td>double</td>
+<td>The number of stateless persons.</td>
+</tr>
+<tr class="even">
+<td>ooc</td>
+<td>double</td>
+<td>The number of others of concern to UNHCR.</td>
+</tr>
+<tr class="odd">
+<td>oip</td>
+<td>double</td>
+<td>The number of other people in need of international protection.</td>
+</tr>
+<tr class="even">
+<td>hst</td>
+<td>double</td>
+<td>The number of host community members.</td>
+</tr>
+</tbody>
+</table>
+<section id="question-1-in-the-year-2022-how-did-geography-affect-the-number-of-refugees-where-were-refugees-coming-from-and-where-were-they-going-to" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-in-the-year-2022-how-did-geography-affect-the-number-of-refugees-where-were-refugees-coming-from-and-where-were-they-going-to">Question 1: In the year 2022, how did geography affect the number of refugees? Where were refugees coming from and where were they going to?</h3>
+<section id="introduction-1" class="level4">
+<h4 class="anchored" data-anchor-id="introduction-1">Introduction:</h4>
+<p>How does geography affect refugee populations in 2022? Where are refugees coming from and where are they going to? In order to answer this question, we’ll need to look at the countries of origin and asylum and compare that with the number of refugees that are coming and going. We are looking at the total count of refugees. This means looking at the categorical variables coo_name and coa_name, and the quantifiable variables refugees asylum_seekers, returned_refugees, and stateless.</p>
+<p>This question interests us for a couple of reasons. First, people end up as refugees for a number of reasons; from sudden war, to long-running economic hardship, to ecological disaster. By analyzing the data geographically, we hope to impart a better understanding of what types of current world events prompt citizens to seek refuge, and what areas of the world are currently under the most stress to help refugees. In doing so, we might get closer to understanding what real-world actions should be prevented and what countries require the most assistance and funding in order to minimize the need for refugees, and better help those who still must seek refuge.</p>
 </section>
-<section id="approach-1-2-paragraphs" class="level4">
-<h4 class="anchored" data-anchor-id="approach-1-2-paragraphs">Approach (1-2 paragraphs):</h4>
-<p>Describe what types of plots you are going to make to address your question. For each plot, provide a clear explanation as to why this plot (e.g.&nbsp;boxplot, barplot, histogram, etc.) is best for providing the information you are asking about. The two plots should be of different types, and at least one of the two plots needs to use either color mapping or facets.</p>
+<section id="approach" class="level4">
+<h4 class="anchored" data-anchor-id="approach">Approach:</h4>
+<p>For this question we will be making two bar charts. The first bar chart will focus on countries of origin. We will use a new variable called total_refugees, a variable created to calculate the sum of the variables refugees, asylum_seekers, returned_refugees, and stateless). For this variable we have excluded idps and ooc to instead focus purely on refugees. The graph will map total_refugees along the y axis and coo_name along the x axis. The graph has been arranged to only show the top 10 countries of origin for refugees. Coo is also being used as a fill variable for each bar. The second bar chart focuses on countries of asylum. Similarly,&nbsp; total_refugees will be mappedalong the y axis and coa_name along the x axis. This graph is also being arranged to show the top 10 countries of asylum and uses coa_name as a fill. The primary purpose of these graphs is to show the countries of origin and countries of assylym with the most refugees. Using a bar chart allows for us to clearly see the data mapped in a clean format which is easy to read and comprehend.&nbsp;</p>
 </section>
-<section id="analysis-2-3-code-blocks-2-figures-textcode-comments-as-needed" class="level4">
-<h4 class="anchored" data-anchor-id="analysis-2-3-code-blocks-2-figures-textcode-comments-as-needed">Analysis (2-3 code blocks, 2 figures, text/code comments as needed):</h4>
-<p>In this section, provide the code that generates your plots. Use scale functions to provide nice axis labels and guides. You are welcome to use theme functions to customize the appearance of your plot, but you are not required to do so. All plots must be made with ggplot2. Do not use base R or lattice plotting functions.</p>
+<section id="analysis" class="level4">
+<h4 class="anchored" data-anchor-id="analysis">Analysis:</h4>
+<p>Graphic 1:</p>
+<div class="cell" data-fig.asp="0.5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/population.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>populations22 <span class="ot">&lt;-</span> population <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>populations22_coo <span class="ot">&lt;-</span> populations22 <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coo_name) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_refugees =</span> <span class="fu">sum</span>(refugees <span class="sc">+</span> asylum_seekers <span class="sc">+</span> returned_refugees <span class="sc">+</span> stateless))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>populations22_coo <span class="sc">%&gt;%</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>total_refugees) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>total_refugees, <span class="at">x =</span> coo_name, <span class="at">fill=</span>coo_name)) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> total_refugees), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>()) <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Countries of Origin in 2022"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Refugees"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Country of Origin"</span>) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>( <span class="at">palette =</span> <span class="st">"Spectral"</span>)  <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Graphic 2:</p>
+<div class="cell" data-fig.asp="0.5">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>populations22_coa <span class="ot">&lt;-</span> populations22 <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coa_name) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarize</span>(<span class="at">total_refugees =</span> <span class="fu">sum</span>(refugees <span class="sc">+</span> asylum_seekers <span class="sc">+</span> returned_refugees <span class="sc">+</span> stateless))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>populations22_coa <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>total_refugees) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>total_refugees, <span class="at">x =</span> coa_name, <span class="at">fill=</span>coa_name)) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> total_refugees), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>()) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Countries of Asylum in 2022"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Refugees"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Country of Asylum"</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>( <span class="at">palette =</span> <span class="st">"Spectral"</span>)  <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
-<section id="discussion-1-3-paragraphs" class="level4">
-<h4 class="anchored" data-anchor-id="discussion-1-3-paragraphs">Discussion (1-3 paragraphs):</h4>
-<p>In the Discussion section, interpret the results of your analysis. Identify any trends revealed (or not revealed) by the plots. Speculate about why the data looks the way it does.</p>
+<section id="discussion" class="level4">
+<h4 class="anchored" data-anchor-id="discussion">Discussion:</h4>
+<p>Graphic 1: From the first plot regarding the countries of origin, we see that Afghanistan and Syria are the countries with the highest numbers of refugees and asylum seekers, indicating a significant displacement crisis. The list also includes other countries such as the Democratic Republic of the Congo, Venezuela, South Sudan, Sudan, Myanmar, Ukraine, the Central African Republic, and Somalia. These countries have faced or are facing severe conflicts, widespread violence, or internal turmoil, which typically drives people to seek safety and refuge elsewhere.<br>
+</p>
+<p>Graphic 2: The second plot shows the top countries of asylum, with Turkey, Iran, and the U.S. being among the top destinations. This indicates that these nations are major receivers of refugees and asylum seekers, likely due to their relatively stable political climates, economies, and asylum policies that might be viewed as favorable or accommodating. Additionally, these countries have established infrastructures and communities that can help facilitate the integration of refugees and asylum seekers.&nbsp;<br>
+</p>
+<p>The trends suggest that nations with ongoing conflicts, such as Afghanistan and Syria, continue to produce high numbers of displaced persons. Meanwhile, the reception of these individuals is distributed among a variety of countries, with some like Germany and Turkey taking in particularly large numbers. The data might reflect geopolitical relationships, economic capabilities of host countries, and the international response to humanitarian crises. Furthermore, historical migration patterns, proximity to the countries of origin, and the policies of the host countries can also influence these trends.<br>
+</p>
+<p>We believe it is worth mentioning that some of the countries of asylum are neighboring countries to those of origin, such as Turkey in relation to Syria, which is often the case since many refugees flee to the nearest safe country. Other countries, like Germany and the USA, despite being further away, are known for their humanitarian programs and may be perceived as offering better opportunities for resettlement and a higher quality of life.<br>
+</p>
+<p>It’s also important to consider the time span of the data; for instance, the presence of Ukraine in the list of countries of origin is likely a result of the conflict that began in 2014 and escalated in subsequent years. The data does not necessarily reflect the long-term trends but rather the situation as it stood in 2022, which can change rapidly due to the dynamic nature of global events and politics.</p>
 </section>
 </section>
-<section id="question-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-2">Question 2:</h3>
-<p>Same structure outlined for Question 1, but for your new question. And the title should relate to the question you’re answering.</p>
-<p>We encourage you to be concise. A paragraph should typically not be longer than 5 sentences.</p>
-<p>You are not required to perform any statistical tests in this project, but you may do so if you find it helpful to answer your question.</p>
+<section id="question-2-how-have-refugee-populations-changed-in-turkey-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-how-have-refugee-populations-changed-in-turkey-over-time">Question 2: How have refugee populations changed in Turkey over time?</h3>
+<section id="introduction-2" class="level4">
+<h4 class="anchored" data-anchor-id="introduction-2">Introduction:</h4>
+<p>In order to understand the dynamics of global displacement we decided to focus our analysis on Turkey in regards to how the total number of refugees fluctuates as time passes as well as the demographics of refugees over time. This focus is driven by an interest in how geopolitical, social, and policy changes within this region have influenced the trends and patterns of refugee movements and settlements. By analyzing a specific country of asylum, alongside the numbers of refugees, asylum-seekers, stateless persons, etc., we aim to uncover the evolving landscape of displacement in Turkey, providing insights into the broader implications of refuge and asylum within this geographical context. To answer this question we will be using year, refugees, asylum_seekers, returned_refugees, stateless, ooc, as well as coa filtered to only show Turkey. We will also be creating two new variables called ref_count which is the sum of all refugee classifications and decades which groups the numbers of refugees for each decade starting in 1950.</p>
+</section>
+<section id="approach-1" class="level4">
+<h4 class="anchored" data-anchor-id="approach-1">Approach:</h4>
+<p>To answer this question we will make two plots. The first is a scatter plot with a smooth line. For this graphic we will use ref_count mapped on the y axis and year mapped along the x axis. Ref_count is a new variable created that calculates the sum of refugees, asylum_seekers, returned_refugees, idps, returned_idps, stateless, and ooc. The main purpose of this graphic is to show general refugee trends in Turkey over time. This graph uses a y scale of log10 for a clearer representation of the growth trends over time. The second graphic will be a stacked bar chart showing the number of refugees by category across time. For this graphic, decades will be mapped along the x axis and number of refugees per category (count) along the y axis. Each bar will use refugee classification as a fill. This graphic will show refugees over decades.</p>
+</section>
+<section id="analysis-1" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-1">Analysis:</h4>
+<p>Graphic 1:</p>
+<div class="cell" data-fig.asp="0.5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tur_all <span class="ot">&lt;-</span> population <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(coa <span class="sc">==</span> <span class="st">"TUR"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ref_count =</span> <span class="fu">sum</span>(refugees <span class="sc">+</span> asylum_seekers <span class="sc">+</span> returned_refugees <span class="sc">+</span> idps <span class="sc">+</span> returned_idps <span class="sc">+</span> stateless <span class="sc">+</span> ooc))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>tur_all <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> ref_count)) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">'log10'</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>()) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"All Refugees in Turkey Over Time"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Total Refugees (using log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Graphic 2:</p>
+<div class="cell" data-fig.asp="0.5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tur_decade <span class="ot">&lt;-</span> population <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(coa <span class="sc">==</span> <span class="st">"TUR"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">decades =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">1950</span>, <span class="dv">1959</span>) <span class="sc">~</span> <span class="st">"1950s"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">1960</span>, <span class="dv">1969</span>) <span class="sc">~</span> <span class="st">"1960s"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">1970</span>, <span class="dv">1979</span>) <span class="sc">~</span> <span class="st">"1970s"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">1980</span>, <span class="dv">1989</span>) <span class="sc">~</span> <span class="st">"1980s"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">1990</span>, <span class="dv">1999</span>) <span class="sc">~</span> <span class="st">"1990s"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">2000</span>, <span class="dv">2009</span>) <span class="sc">~</span> <span class="st">"2000s"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">2010</span>, <span class="dv">2019</span>) <span class="sc">~</span> <span class="st">"2010s"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">between</span>(year, <span class="dv">2020</span>, <span class="dv">2029</span>) <span class="sc">~</span> <span class="st">"2020s"</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>tur_decade_sum <span class="ot">&lt;-</span> tur_decade<span class="sc">%&gt;%</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(decades) <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">refugees =</span> <span class="fu">sum</span>(refugees),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">asylum_seekers =</span> <span class="fu">sum</span>(asylum_seekers),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">returned_refugees =</span> <span class="fu">sum</span>(returned_refugees),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">stateless =</span> <span class="fu">sum</span>(stateless),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">ooc =</span> <span class="fu">sum</span>(ooc)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>decades, <span class="at">names_to =</span> <span class="st">"condition"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>tur_decade_sum <span class="sc">%&gt;%</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(count <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> decades, <span class="at">y =</span> count, <span class="at">fill =</span> condition)) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">'log10'</span>) <span class="sc">+</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> count), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Refugee Demographics in Turkey Over Time"</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Decade"</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Refugee Categories"</span>) <span class="sc">+</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"refugees"</span> <span class="ot">=</span> <span class="st">"Refugees"</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"asylum_seekers"</span> <span class="ot">=</span> <span class="st">"Asylum Seekers"</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"returned_refugees"</span> <span class="ot">=</span> <span class="st">"Returned Refugees"</span>,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stateless"</span> <span class="ot">=</span> <span class="st">"Stateless Persons"</span>,</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ooc"</span> <span class="ot">=</span> <span class="st">"Others of Concern to UNHCR"</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  ))  <span class="sc">+</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="discussion-1" class="level4">
+<h4 class="anchored" data-anchor-id="discussion-1">Discussion:</h4>
+<p>The first graph reveals that there is a clear upward trend in the number of refugees in Turkey. This is growth which is faster than exponential growth, since the data slope upwards even on a logarithmic graph. This suggests that the driving force that is increasing the number of refugees over time is not due to population growth, and is in fact an instigated change in the world. The data also show a decrease in the rate of growth in recent years, which suggests that equilibrium will be reached over time.</p>
+<p>The second graph similarly shows the trend of refugee growth in Turkey, though the point of importance is in the ratio between asylum seekers, refugees, and returned refugees. The ratio between asylum seekers and refugees in the 2000s pits them about equally, but while both of them skyrocketed in the 2010s and 2020s, the category of refugees increased even more, which suggests that Turkey relaxed the requirements to be legally designated as a refugee. The number of returned refugees, refugees leaving Turkey, also increased, but not nearly as much as the influx arriving in Turkey. This suggests that the flow of refugees has been, and still is, one-way, and will probably not find an equilibrium any time soon.</p>
 
 
+</section>
 </section>
 </section>
 </section>
