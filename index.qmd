@@ -18,6 +18,7 @@ library(httr)
 library(readr)
 library(RColorBrewer)
 library(tidyr)
+library(rnaturalearth)
 ```
 
 ## Introduction:
@@ -25,7 +26,7 @@ library(tidyr)
 The data utilized in our analysis originates from the [{refugees} R package](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-08-22/readme.md), specifically designed to facilitate access to the United Nations High Commissioner for Refugees (UNHCR) Refugee Data Finder. This package provides an easy-to-use interface to a comprehensive database spanning over 70 years and covering various forcibly displaced populations, including refugees, asylum-seekers, internally displaced people, stateless individuals, and others. It aggregates data from three primary sources: the UNHCR's annual statistical reports dating back to 1951, the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), and the Internal Displacement Monitoring Centre (IDMC), focusing on individuals displaced within their own country due to conflict or violence. The {refugees} package encompasses eight datasets, with our analysis specifically targeting population data from 2010 to 2022. This dataset comprises 126,262 observations across 16 variables, offering a unique perspective on global displacement trends. Our research addresses critical questions, including the impact of geography on refugee populations in 2022---exploring the origins and destinations of refugees---and examining how refugee populations in Turkey have evolved over time. The following are each of the 16 variables available in this database.
 
 | variable          | class     | description                                                     |
-|------------------|------------------|-------------------------------------|
+|------------------|------------------|------------------------------------|
 | year              | double    | The year.                                                       |
 | coo_name          | character | Country of origin name.                                         |
 | coo               | character | Country of origin UNHCR code.                                   |
@@ -46,7 +47,7 @@ The data utilized in our analysis originates from the [{refugees} R package](htt
 Going forward, it is important to take note of the key terms used in this project. Below is a table that includes definitions which are important for this project. All definitions come from the UNHCR glossary.
 
 | Key Terms        | UNHCR Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-----------|-------------------------------------------------------------|
 | Refugee          | Under international law and UNHCR's mandate, refugees are persons outside their countries of origin who are in need of [international protection](https://www.unhcr.org/glossary#international-protection) because of feared persecution, or a serious threat to their life, physical integrity or freedom in their [country of origin](https://www.unhcr.org/glossary#country-of-origin) as a result of [persecution](https://www.unhcr.org/glossary#persecution), [armed conflict](https://www.unhcr.org/glossary#armed-conflict), violence or serious public disorder.                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Asylum-seeker    | A general term for any person who is seeking international protection. In some countries, it is used as a legal term referring to a person who has applied for [refugee status](https://www.unhcr.org/glossary#refugee-status) or a complementary international protection status and has not yet received a final decision on their claim. It can also refer to a person who has not yet submitted an application but may intend to do so, or may be in need of international protection. Not every asylum-seeker will ultimately be recognized as a [refugee](https://www.unhcr.org/glossary#refugee), but every refugee is initially an [asylum seeker](https://www.unhcr.org/glossary#asylum-seeker). However, an asylum-seeker may not be sent back to their [country of origin](https://www.unhcr.org/glossary#country-of-origin) until their asylum claim has been examined in a fair procedure, and is entitled to certain minimum standards of treatment pending determination of their status. |
 | Returned refugee | A former [refugee](https://www.unhcr.org/glossary#refugee) who has returned from a [host country](https://www.unhcr.org/glossary#host-country) to their [country of origin](https://www.unhcr.org/glossary#country-of-origin) or former [habitual residence](https://www.unhcr.org/glossary#habitual-residence), spontaneously or in an organized fashion, with the intention of remaining there permanently and who is yet to be fully integrated. Returnees include those returning as part of the operationalisation of the [cessation](https://www.unhcr.org/glossary#cessation-clause) clauses in the 1951 Convention and regional equivalents. The High Commissioner has a protection and solutions mandate for returnees as former refugees.                                                                                                                                                                                                                                                      |
@@ -119,6 +120,54 @@ populations22_coa %>%
   scale_fill_brewer( palette = "Spectral")  +
   theme_minimal() +
   theme(axis.text.x = element_blank())
+```
+
+Map 1:
+
+```{r}
+#| fig.asp: .5
+
+pop22_coo <- populations22 %>%
+  group_by(coo_iso) %>%
+  summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + stateless))
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+populations22_coo_shape <- merge(pop22_coo, world, by.x = "coo_iso", by.y = "iso_a3")
+
+ggplot() +
+  geom_sf(data = populations22_coo_shape, aes(fill = total_refugees, geometry = geometry), color = "darkgrey", size = 0.2) +
+  scale_fill_gradientn(
+    colors = brewer.pal(n = 9, name = "Blues"),
+    name = "Total Refugees",
+    labels = scales::comma
+  ) +
+  theme_minimal() +
+  labs(title = "Countries of Origin in 2022")
+```
+
+Map 2:
+
+```{r}
+#| fig.asp: .5
+
+pop22_coa <- populations22 %>%
+  group_by(coa_iso) %>%
+  summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + stateless))
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+populations22_coa_shape <- merge(pop22_coa, world, by.x = "coa_iso", by.y = "iso_a3")
+
+ggplot() +
+  geom_sf(data = populations22_coa_shape, aes(fill = total_refugees, geometry = geometry), color = "darkgrey", size = 0.2) +
+  scale_fill_gradientn(
+    colors = brewer.pal(n = 9, name = "Blues"),
+    name = "Total Refugees",
+    labels = scales::comma
+  ) +
+  theme_minimal() +
+  labs(title = "Countries of Asylum in 2022")
 ```
 
 #### Discussion:

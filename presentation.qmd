@@ -23,33 +23,9 @@ library(httr)
 library(readr)
 library(RColorBrewer)
 library(tidyr)
+library(rnaturalearth)
 ```
 
-```{r}
-#| eval: false
-#| echo: false
-#| warning: false
-#| message: false
-
-## Outline
-
-#* Your presentation should generally follow the same structure as your write-up. 
-
-#* Each team will have 5 minutes for their presentation, and each team member must speak (roughly equally) during this time. 
-
-#* Your presentation will be created using `Quarto`, which allows you to write slides using the same coding structure you’re used to with `Rmarkdown`. 
-
-#* This is a sample Quarto slide template you can edit to your desire to create your presentation. 
-
-## Rubric
-
-#* Roughly I recommend 1 slide for introduction, 2 slides for Question 1, ans 2 slides for Question 2. 
- # + You can imagine spending roughly one minute on each slide.
-  #+ You should feel free to have more (or fewer) slides. 
-  
-#* Your evaluation will be based on your content, professionalism (including sticking to time), and your performance during the Q&A (question and answer). We don’t care how many slides you use to do this.
-
-```
 
 ## Introduction {.smaller}
 
@@ -161,6 +137,64 @@ Three main types of countries of asylum:
 3. A good place to seek refuge (e.g. Germany)
 
 :::
+
+
+## Question 1 Graphics (cont.)
+
+::: panel-tabset
+### Map 1
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+pop22_coo <- populations22 %>%
+  group_by(coo_iso) %>%
+  summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + stateless))
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+populations22_coo_shape <- merge(pop22_coo, world, by.x = "coo_iso", by.y = "iso_a3")
+
+ggplot() +
+  geom_sf(data = populations22_coo_shape, aes(fill = total_refugees, geometry = geometry), color = "darkgrey", size = 0.2) +
+  scale_fill_gradientn(
+    colors = brewer.pal(n = 9, name = "Blues"),
+    name = "Total Refugees",
+    labels = scales::comma
+  ) +
+  theme_minimal() +
+  labs(title = "Countries of Origin in 2022")
+```
+
+### Map 2
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig.asp: .5
+
+pop22_coa <- populations22 %>%
+  group_by(coa_iso) %>%
+  summarize(total_refugees = sum(refugees + asylum_seekers + returned_refugees + stateless))
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+populations22_coa_shape <- merge(pop22_coa, world, by.x = "coa_iso", by.y = "iso_a3")
+
+ggplot() +
+  geom_sf(data = populations22_coa_shape, aes(fill = total_refugees, geometry = geometry), color = "darkgrey", size = 0.2) +
+  scale_fill_gradientn(
+    colors = brewer.pal(n = 9, name = "Blues"),
+    name = "Total Refugees",
+    labels = scales::comma
+  ) +
+  theme_minimal() +
+  labs(title = "Countries of Asylum in 2022")
+```
+
+::: 
 
 ## Question 2
 
